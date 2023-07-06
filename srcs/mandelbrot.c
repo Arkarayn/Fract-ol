@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_mandelbrot.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmattei <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 16:58:03 by gmattei           #+#    #+#             */
+/*   Updated: 2023/07/06 16:58:04 by gmattei          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/fractol.h"
 
 void	ft_mandelbrot_init(t_data *data)
@@ -34,7 +46,7 @@ int	ft_equation(t_data *data)
 				data->coord.iter++;
 			}
 			ft_mlx_pixel_put(data, data->coord.px, data->coord.py,
-				data->coord.iter * data->coord.max_iter * data->color);
+				data->coord.iter + data->color * data->coord.iter);
 			data->coord.py++;
 		}
 		data->coord.px++;

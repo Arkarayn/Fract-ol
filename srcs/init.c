@@ -58,9 +58,37 @@ void	ft_draw_handler(t_data *data)
 	data->mouse_y = 0;
 	data->small_side = ft_get_small_side();
 	data->zoom = 1;
+	data->label = 1;
+	data->julia_multiplier = 0.01;
 	data->zoom_incr = data->zoom / 10;
 	data->zoom_decr = data->zoom_incr;
 	data->coord.max_iter = MAX_ITER;
-	data->color = 0x0000FF;
+	data->color = 262400;
 	ft_draw(data);
+}
+
+void	hook_handler_2(int keycode, t_data *data)
+{
+	if (keycode == XK_r)
+		ft_reset_fractal(data);
+	else if (keycode == XK_1)
+		fractal_change(data, 1);
+	else if (keycode == XK_2)
+		fractal_change(data, 2);
+	else if (keycode == XK_3)
+		fractal_change(data, 3);
+	else if (keycode == XK_l)
+		data->label++;
+	else if (keycode == XK_4)
+		data->julia_multiplier -= 0.01;
+	else if (keycode == XK_5)
+		data->julia_multiplier += 0.01;
+	else if (keycode == XK_6)
+		data->coord.julia.re -= data->julia_multiplier;
+	else if (keycode == XK_7)
+		data->coord.julia.re += data->julia_multiplier;
+	else if (keycode == XK_8)
+		data->coord.julia.im -= data->julia_multiplier;
+	else if (keycode == XK_9)
+		data->coord.julia.im += data->julia_multiplier;
 }

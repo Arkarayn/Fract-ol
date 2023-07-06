@@ -12,6 +12,21 @@
 
 #include "../headers/fractol.h"
 
+void	instant_pointed_zoom(t_data *data, int x, int y, int n)
+{
+	int	i;
+
+	i = 8;
+	while (i > 0)
+	{
+		if (n == 1)
+			ft_zoom_in(data, x, y);
+		else
+			ft_zoom_out(data, x, y);
+		i--;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;

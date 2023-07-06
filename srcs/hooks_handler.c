@@ -21,8 +21,10 @@ void	ft_reset_fractal(t_data *data)
 	data->move_x = 0;
 	data->move_y = 0;
 	data->zoom = 1.0;
+	data->label = 1;
+	data->julia_multiplier = 0.01;
 	data->coord.max_iter = MAX_ITER;
-	data->color = 0x0000FF;
+	data->color = 262400;
 }
 
 void	ft_zoom_in(t_data *data, int px, int py)
@@ -31,7 +33,7 @@ void	ft_zoom_in(t_data *data, int px, int py)
 		* (data->x_max - data->x_min) / data->small_side;
 	data->mouse_y = data->y_max - (data->move_y + py)
 		* (data->y_max - data->y_min) / data->small_side;
-	data->zoom_decr = data->zoom / 10;
+	data->zoom_decr = data->zoom / 1;
 	data->new_zoom = fabsl(data->zoom - data->zoom_decr);
 	if (data->new_zoom <= data->zoom_decr)
 	{
@@ -83,6 +85,10 @@ int	ft_mouse_handler(int keycode, int px, int py, t_data *data)
 		ft_zoom_in(data, px, py);
 	else if (keycode == 5)
 		ft_zoom_out(data, px, py);
+	else if (keycode == 1)
+		instant_pointed_zoom(data, px, py, 1);
+	else if (keycode == 3)
+		instant_pointed_zoom(data, px, py, 0);
 	else
 		return (0);
 	ft_draw(data);
@@ -91,7 +97,7 @@ int	ft_mouse_handler(int keycode, int px, int py, t_data *data)
 
 int	ft_key_handler(int keycode, t_data *data)
 {
-	if (keycode == XK_Escape)
+	if (keycode == XK_Escape || keycode == XK_q)
 	{
 		ft_destroy_fractal(data);
 		return (0);
@@ -104,10 +110,16 @@ int	ft_key_handler(int keycode, t_data *data)
 		data->move_y += (WIN_HEIGHT / 20);
 	else if (keycode == XK_Right)
 		data->move_x += (WIN_HEIGHT / 20);
-	else if (keycode == XK_c)
-		data->color *= 25;	
-	else if (keycode == XK_r)
-		ft_reset_fractal(data);
+	else if (keycode == XK_x)
+		data->color += 5;
+	else if (keycode == XK_z)
+		data->color -= 5;
+	else if (keycode == XK_s)
+		data->color += 20000;
+	else if (keycode == XK_a)
+		data->color -= 20000;
+	else
+		hook_handler_2(keycode, data);
 	ft_draw(data);
 	return (0);
 }

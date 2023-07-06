@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_julia.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmattei <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 16:57:44 by gmattei           #+#    #+#             */
+/*   Updated: 2023/07/06 16:57:45 by gmattei          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/fractol.h"
 
 void	ft_julia_init(t_data *data)
@@ -32,7 +44,7 @@ int	ft_julia(t_data *data)
 				data->coord.iter++;
 			}
 			ft_mlx_pixel_put(data, data->coord.px, data->coord.py,
-				data->coord.iter * data->color * 420);
+				data->coord.iter + data->color * data->coord.iter);
 			data->coord.py++;
 		}
 		data->coord.px++;

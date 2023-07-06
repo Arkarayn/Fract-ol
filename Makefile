@@ -18,7 +18,7 @@ LIB_DIR = projects/lib/
 
 LIB = first_layer.a
 
-SRCS_FILES = ft_main.c ft_valid_args.c ft_error_msg.c ft_init.c ft_hooks_handler.c ft_draw.c ft_mandelbrot.c ft_destroy_fractal.c ft_julia.c ft_burning_ship.c \
+SRCS_FILES = main.c valid_args.c error_msg.c init.c hooks_handler.c draw.c mandelbrot.c destroy_fractal.c julia.c burning_ship.c \
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
@@ -42,9 +42,6 @@ $(NAME): $(SRCS) $(O_SRCS)
 check_if_exist:
 	if [ -d "$(LIB_DIR)" ]; then \
 		$(MAKE) -C projects fclean; \
-		echo "lib directory is being updated!"; \
-	else \
-		echo "lib directory is being created!";\
 	fi
 
 clean:
@@ -60,12 +57,6 @@ fclean: clean
 	clear
 
 re: fclean all
-	clear
-
-push: 
-	git add .
-	git commit -m "March update"
-	git push
 	clear
 
 norm:

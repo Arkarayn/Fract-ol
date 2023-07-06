@@ -18,9 +18,10 @@
 # include "../minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <stdio.h>
 
-# define WIN_WIDTH 600 
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 900 
+# define WIN_HEIGHT 900
 # define MAX_ITER 150
 # define MLX_ERROR -1
 
@@ -59,7 +60,9 @@ typedef struct s_data
 	int			fractal;
 	int			small_side;
 	int			color;
+	int			label;
 	int			launch;
+	double		julia_multiplier;
 	double		x_min;
 	double		x_max;
 	double		y_min;
@@ -79,7 +82,7 @@ typedef struct s_data
 
 /*args check*/
 int		ft_valid_args(t_data *data, int argc, char **argv);
-int		ft_julia_args(t_data *data, char **argv);
+int		ft_julia_args(t_data *data, int argc, char **argv);
 void	ft_error_msg(void);
 /*init functions*/
 int		ft_init(t_data *data);
@@ -92,21 +95,26 @@ int		ft_destroy_fractal(t_data *data);
 /*hooks handler functions*/
 int		ft_mouse_handler(int keycode, int px, int py, t_data *data);
 int		ft_key_handler(int keycode, t_data *data);
+void	hook_handler_2(int keycode, t_data *data);
 void	ft_reset_fractal(t_data *data);
 void	ft_color_change(t_data *data);
 /*zoom functions*/
-void	ft_zoom_in(t_data *data, int px, int py);	
+void	ft_zoom_in(t_data *data, int px, int py);
 void	ft_zoom_out(t_data *data, int px, int py);
+void	instant_zoom(t_data *data);
+void	instant_pointed_zoom(t_data *data, int x, int y, int n);
 /*draw functions*/
 void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	ft_draw(t_data *data);
 void	ft_window_label(t_data *data);
+void	fractal_change(t_data *data, int n);
 /*Mandelbrot functions*/
 void	ft_mandelbrot_init(t_data *data);
 int		ft_equation(t_data *data);
 /*Julia functions*/
 void	ft_julia_init(t_data *data);
 int		ft_julia(t_data *data);
+void	ft_sprintf(char *str, double x);
 /*Burning Ship functions*/
 void	ft_burning_ship_init(t_data *data);
 int		ft_burning_ship(t_data *data);
