@@ -40,37 +40,8 @@ void	ft_draw(t_data *data)
 		ft_window_label(data);
 }
 
-void	julia_window_label(int color, t_data *data)
-{
-	char	str[20];
-
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 650, 75,
-		color, "'9' to increase second parameter");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 650, 90,
-		color, "'4' to decrease multiplier range");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 650, 105,
-		color, "'5' to increase multiplier range");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 125, 800,
-		color, "FIRST PARAMETER");
-	ft_sprintf(str, data->coord.julia.re);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 125, 815,
-		color, str);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 375, 800,
-		color, "MULTIPLIER RANGE");
-	ft_sprintf(str, data->julia_multiplier);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 375, 815,
-		color, str);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 625, 800,
-		color, "SECOND PARAMETER");
-	ft_sprintf(str, data->coord.julia.im);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 625, 815,
-		color, str);
-}
-
 void	window_label_2(int color, t_data *data)
 {
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 275, 60,
-		color, "'Esc' or 'Q' to exit");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 275, 80,
 		color, " Left Click and Right Click for instant zoom in and out");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 455, 15,
@@ -91,7 +62,8 @@ void	window_label_2(int color, t_data *data)
 			color, "'7' to increase first parameter");
 		mlx_string_put(data->mlx_ptr, data->win_ptr, 650, 60,
 			color, "'8' to decrease second parameter");
-		julia_window_label(color, data);
+		mlx_string_put(data->mlx_ptr, data->win_ptr, 650, 75,
+			color, "'9' to increase second parameter");
 	}
 }
 
@@ -118,5 +90,7 @@ void	ft_window_label(t_data *data)
 		color, "'R' to reset fractal");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 275, 45,
 		color, "'L' to toggle all label");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 275, 60,
+		color, "'Esc' or 'Q' to exit");
 	window_label_2(color, data);
 }
