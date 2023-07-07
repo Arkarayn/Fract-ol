@@ -114,7 +114,6 @@ int		ft_equation(t_data *data);
 /*Julia functions*/
 void	ft_julia_init(t_data *data);
 int		ft_julia(t_data *data);
-void	ft_sprintf(char *str, double x);
 /*Burning Ship functions*/
 void	ft_burning_ship_init(t_data *data);
 int		ft_burning_ship(t_data *data);

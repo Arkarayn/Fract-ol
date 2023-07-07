@@ -32,22 +32,6 @@ void	instant_zoom(t_data *data)
 	}
 }
 
-void	ft_sprintf(char *str, double x)
-{
-	int	i;
-
-	sprintf(str, "%f", x);
-	i = 5;
-	while (i > 0)
-	{
-		if (str[i] == '0')
-			str[i] = '\0';
-		else
-			break ;
-		i--;
-	}
-}
-
 int	ft_julia_args(t_data *data, int argc, char **argv)
 {
 	if (argc == 4)
